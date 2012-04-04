@@ -15,7 +15,7 @@ The Extras
 
 + "Just add water" CSS animations.
 
-**<a href="http://fortawesome.github.com/Font-Awesome/#">Font Awesome</a> + <a href="http://icomoon.com">IcoMoon</a>**
+**<a href="http://fortawesome.github.com/Font-Awesome/#">Font Awesome</a> + <a href="http://keyamoon.com/icomoon/">IcoMoon</a>**
 
 + Turns glyphicons into an icon font to use a variety of sizes and colors. Also adds a bunch of new icons from FontAwesome and IcoMoon.
 
