@@ -92,16 +92,18 @@
 # JavaScript
 #   Normalize to standard type (it's sniffed in IE anyways)
 #   tools.ietf.org/html/rfc4329#section-7.2
-AddType application/javascript         js
+AddType application/javascript         js jsonp
+AddType application/json               json
 
 # Audio
 AddType audio/ogg                      oga ogg
-AddType audio/mp4                      m4a
+AddType audio/mp4                      m4a f4a f4b
 
 # Video
 AddType video/ogg                      ogv
-AddType video/mp4                      mp4 m4v
+AddType video/mp4                      mp4 m4v f4v f4p 
 AddType video/webm                     webm
+AddType video/x-flv                    flv
 
 # SVG
 #   Required for svg webfonts on iPad
@@ -120,12 +122,14 @@ AddType image/x-icon                        ico
 AddType image/webp                          webp
 AddType text/cache-manifest                 appcache manifest
 AddType text/x-component                    htc
+AddType application/xml                     rss atom xml rdf
 AddType application/x-chrome-extension      crx
 AddType application/x-opera-extension       oex
 AddType application/x-xpinstall             xpi
 AddType application/octet-stream            safariextz
 AddType application/x-web-app-manifest+json webapp
 AddType text/x-vcard                        vcf
+AddType application/x-shockwave-flash       swf
 
 
 
@@ -209,8 +213,7 @@ AddType text/x-vcard                        vcf
 # ----------------------------------------------------------------------
 
 # These are pretty far-future expires headers.
-# They assume you control versioning with cachebusting query params like
-#   <script src="application.js?20100608">
+# They assume you control versioning with filename-based cache busting
 # Additionally, consider that outdated proxies may miscache
 #   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
@@ -308,9 +311,7 @@ FileETag None
 # If needed, uncomment and specify a path or regex in the Location directive
 
 # <IfModule mod_headers.c>
-#   <Location />
-#     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
-#   </Location>
+#   Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
 # </IfModule>
 
 
@@ -321,10 +322,14 @@ FileETag None
 
 # Turning on the rewrite engine is necessary for the following rules and features.
 # FollowSymLinks must be enabled for this to work.
+#
+# Some cloud hosting services require RewriteBase to be set: goo.gl/HOcPN
+# If using the h5bp in a subdirectory, use `RewriteBase /foo` instead where 'foo' is your directory.
 
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
   RewriteEngine On
+# RewriteBase /
 </IfModule>
 
 
@@ -379,7 +384,7 @@ FileETag None
 # /css/style.20110203.css to /css/style.css
 
 # To understand why this is important and a better idea than all.css?v1231,
-# read: github.com/h5bp/html5-boilerplate/wiki/Version-Control-with-Cachebusting
+# read: github.com/h5bp/html5-boilerplate/wiki/cachebusting
 
 # Uncomment to enable.
 # <IfModule mod_rewrite.c>
@@ -421,6 +426,8 @@ Options -MultiViews
 # ----------------------------------------------------------------------
 
 # You can add custom pages to handle 500 or 403 pretty easily, if you like.
+# If you are hosting your site in subdirectory, adjust this accordingly
+#    e.g. ErrorDocument 404 /subdir/404.html
 ErrorDocument 404 /404.html
 
 
@@ -494,6 +501,9 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 
 # Rename session cookie to something else, than PHPSESSID
 # php_value session.name sid
+
+# Disable magic quotes (This feature has been DEPRECATED as of PHP 5.3.0 and REMOVED as of PHP 5.4.0.)
+# php_flag magic_quotes_gpc Off
 
 # Do not show you are using PHP
 # Note: Move this line to php.ini since it won't work in .htaccess
