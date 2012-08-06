@@ -17,6 +17,8 @@
 .hidden-phone      { }
 .hidden-tablet     { }
 .hidden-desktop    { display: none !important; }
+.hidden-hd         { display: inherit !important; }
+.visible-hd        { display: none !important; }
 
 // Phones only
 @media (max-width: 767px) {
@@ -38,4 +40,10 @@
   // Hide everything else
   .hidden-desktop    { display: inherit !important; }
   .visible-desktop   { display: none !important ; }
+}
+
+// Retina display devices only
+@media all and (-webkit-min-device-pixel-ratio : 1.5) {
+  .hidden-hd         { display: none !important; }
+  .visible-hd        { display: inherit !important; }
 }

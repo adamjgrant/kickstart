@@ -1013,6 +1013,7 @@ select:focus:required:invalid:focus {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
   vertical-align: middle;
   padding-left: 5px;
 }
@@ -1161,6 +1162,7 @@ select:focus:required:invalid:focus {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
   margin-bottom: 0;
 }
 .form-search .hide,
@@ -2093,6 +2095,7 @@ button.close {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
   padding: 4px 10px 4px;
   margin-bottom: 0;
   font-size: 13px;
@@ -2463,6 +2466,7 @@ input[type="submit"].btn.btn-mini {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
 }
 .btn-group > .btn {
   position: relative;
@@ -3323,6 +3327,7 @@ input[type="submit"].btn.btn-mini {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
   text-shadow: 0 1px 0 #ffffff;
 }
 .breadcrumb .divider {
@@ -3342,6 +3347,7 @@ input[type="submit"].btn.btn-mini {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+  stop: being-broken;
   margin-left: 0;
   margin-bottom: 0;
   -webkit-border-radius: 3px;
@@ -4183,9 +4189,11 @@ a.badge:hover {
   This should be @imported into /less/bootstrap.less at the end of the file.
   This allows you to keep the Bootstrap core up-to-date without losing your modifications. 
   
-  However, only LESS writeup which effects the whole of Kickstrap should be directly written here.
+  However, only LESS writeup which effects the whole of Kickstrap--all themes--should be directly written here.
   If instead you want to modify your current theme, I recommend going into the /extras/themes/ folder
   and modifying it there.
+  
+  If you want to change themes, head to /extras/settings/themes.less.
   
   */
 div.jGrowl {
@@ -5078,6 +5086,43 @@ ol.linenums li {
   line-height: 18px;
   text-shadow: 0 1px 0 #fff;
 }
+html,
+body {
+  height: 100%;
+}
+#sf-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+.container.main {
+  overflow: auto;
+  padding-bottom: 3em;
+}
+footer#footer {
+  position: relative;
+  margin-top: -3em;
+  height: 3em;
+  clear: both;
+}
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+}
+/* IMPORTANT
+	
+	You also need to include this conditional style in the <head> of your HTML file to feed this style to IE 6 and lower and 8 and higher.
+	
+	<!--[if !IE 7]>
+		<style type="text/css">
+			#wrap {display:table;height:100%}
+		</style>
+	<![endif]-->
+	
+	*/
 [class*="span"] {
   margin-top: 10px;
   margin-bottom: 10px;

@@ -9,9 +9,11 @@
   This should be @imported into /less/bootstrap.less at the end of the file.
   This allows you to keep the Bootstrap core up-to-date without losing your modifications. 
   
-  However, only LESS writeup which effects the whole of Kickstrap should be directly written here.
+  However, only LESS writeup which effects the whole of Kickstrap--all themes--should be directly written here.
   If instead you want to modify your current theme, I recommend going into the /extras/themes/ folder
   and modifying it there.
+  
+  If you want to change themes, head to /extras/settings/themes.less.
   
   */
   
@@ -270,6 +272,52 @@ ol.linenums li {
   line-height: 18px;
   text-shadow: 0 1px 0 #fff;
 }
+
+// STICKY FOOTER
+// Based on work from http://ryanfait.com/sticky-footer and http://www.cssstickyfooter.com/
+
+@footerHeight: 3em; // Just set this and the rest is taken care of.
+
+html, body {
+	height: 100%;
+}
+#sf-wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%; // For IE.
+}
+.container.main { // Should have only one of these per page.
+	overflow:auto;
+	padding-bottom: @footerHeight;
+}
+footer#footer {
+	position: relative;
+	margin-top: -@footerHeight;
+	height: @footerHeight;
+	clear:both;
+}
+
+	// Opera Fix
+	body:before { // Thanks to Maleika (Kohoutec)
+		content:"";
+		height:100%;
+		float:left;
+		width:0;
+		margin-top:-32767px; // Thank you Erik J - negate effect of float
+	}
+	
+	/* IMPORTANT
+	
+	You also need to include this conditional style in the <head> of your HTML file to feed this style to IE 6 and lower and 8 and higher.
+	
+	<!--[if !IE 7]>
+		<style type="text/css">
+			#wrap {display:table;height:100%}
+		</style>
+	<![endif]-->
+	
+	*/
+	
   @import "theme.less";				// Kickstrap themes 
   @import "../../extras/icomoon/icomoon.less"; 				// Turn this on if you want even more fonts from IcoMoon.
   @import "../../extras/chosen/chosen.less"; 				// Chosen for select boxes        
