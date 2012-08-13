@@ -67,7 +67,7 @@ Pick Theme
 
 *LESS compiler required, <a href="https://github.com/ajkochanowicz/Kickstrap/wiki/Windows">Windows users should do this.</a>
 
-1. Open /extras/themes/settings.less and uncomment the @import line (remove the //s) of the theme you want to use.
+1. Open /extras/settings/themes.less and uncomment the @import line (remove the //s) of the theme you want to use.
 2. Compile.
 
 Advanced Setup
