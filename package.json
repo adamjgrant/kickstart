@@ -1,6 +1,6 @@
 {
   "name": "kickstart-node",
-  "version": "3.0.76",
+  "version": "3.0.77",
   "description": "A front-end library for clean HTML and fast performance",
   "keywords": [
     "CoffeeScript",
